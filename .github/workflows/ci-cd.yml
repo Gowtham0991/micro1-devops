@@ -64,7 +64,7 @@ jobs:
           docker build -t micro1-devops:${{ github.sha }} .
 
       - name: Run Trivy Vulnerability Scan
-        uses: aquasecurity/trivy-action@0.28.0
+        uses: aquasecurity/trivy-action@master
         with:
           image-ref: micro1-devops:${{ github.sha }}
           format: table
