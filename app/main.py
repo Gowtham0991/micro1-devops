@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 app = FastAPI(
     title="Micro1 DevOps Assignment",
     version="1.0.0",
-    description="Production-style backend service built for Micro1 DevOps Assessment"
+    description="Production style backend service"
 )
 
 Instrumentator().instrument(app).expose(app)
