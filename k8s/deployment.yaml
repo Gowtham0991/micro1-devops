@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: micro1-devops
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: micro1-devops
+
+  template:
+    metadata:
+      labels:
+        app: micro1-devops
+
+    spec:
+      containers:
+      - name: micro1-devops
+        image: micro1-devops:1.0
+        imagePullPolicy: Never
+
+        ports:
+        - containerPort: 8000
+
+        envFrom:
+        - configMapRef:
+            name: micro1-config
+
+        env:
+        - name: API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: micro1-secret
+              key: API_KEY
+
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 10
+
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 10
+          periodSeconds: 15
+
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsNonRoot: true

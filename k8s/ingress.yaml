@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: micro1-ingress
+
+spec:
+  ingressClassName: nginx
+
+  rules:
+  - host: micro1.local
+
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+
+        backend:
+          service:
+            name: micro1-service
+            port:
+              number: 80

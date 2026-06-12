@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: micro1-service
+
+spec:
+  selector:
+    app: micro1-devops
+
+  ports:
+  - port: 80
+    targetPort: 8000
+
+  type: ClusterIP

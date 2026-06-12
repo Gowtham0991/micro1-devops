@@ -2,7 +2,8 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
-RUN groupadd -r appgroup && useradd -r -g appgroup appuser
+RUN groupadd -g 10001 appgroup && \
+    useradd -u 10001 -g appgroup appuser
 
 COPY requirements.txt .
 
@@ -10,9 +11,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-RUN chown -R appuser:appgroup /app
+RUN chown -R 10001:10001 /app
 
-USER appuser
+USER 10001
 
 EXPOSE 8000
 
