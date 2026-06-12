@@ -13,3 +13,7 @@ output "ecr_repository_url" {
 output "vpc_id" {
   value = module.vpc.vpc_id
 }
+
+output "github_actions_role_arn" {
+  value = aws_iam_role.github_actions.arn
+}
