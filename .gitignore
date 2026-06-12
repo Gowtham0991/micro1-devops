@@ -1,6 +1,17 @@
+# Terraform
+terraform/.terraform/
+terraform/.terraform.lock.hcl
+*.tfstate
+*.tfstate.*
+crash.log
+
+# Python
 venv/
 __pycache__/
 .pytest_cache/
+.pytest_cache/
+
+# macOS
 .env
 .idea/
 .vscode/
