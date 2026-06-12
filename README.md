@@ -620,6 +620,4 @@ docs/AI_USAGE.md
 
 All architecture decisions, implementation validation, testing, troubleshooting, and final design choices were reviewed and performed manually.
 
-END
-
 ---
